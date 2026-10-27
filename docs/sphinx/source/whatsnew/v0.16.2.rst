@@ -30,6 +30,8 @@ Enhancements
 
 Documentation
 ~~~~~~~~~~~~~
+* Link irradiance input definitions in the :ref:`nomenclature` to functions
+  that calculate them. (:issue:`2921`)
 * Clarified in :py:func:`pvlib.tracking.singleaxis` that the tracker
   rotation minimizes the angle of incidence (AOI) to maximize the use of
   direct normal irradiance (DNI). (:issue:`2314`, :pull:`2869`)
@@ -64,6 +66,7 @@ Maintenance
 Contributors
 ~~~~~~~~~~~~
 
+* :ghuser:`nazeeh111`
 * :ghuser:`anshurajbisoyi98-ctrl`
 * Adam R. Jensen (:ghuser:`AdamRJensen`)
 * Cliff Hansen (:ghuser:`cwhanse`)

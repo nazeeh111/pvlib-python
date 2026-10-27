@@ -14,7 +14,9 @@ There is a convention on consistent variable names throughout the library:
         Absolute airmass
     
     airmass_relative
-        Relative airmass
+        Relative (not pressure-adjusted) airmass. Can be calculated with
+        :py:func:`~pvlib.atmosphere.get_relative_airmass`. See that function's
+        ``model`` parameter for the required true or apparent zenith angle.
     
     albedo
         Ratio of reflected solar irradiance to global horizontal irradiance
@@ -32,6 +34,7 @@ There is a convention on consistent variable names throughout the library:
     aoi
         Angle of incidence. Angle between the surface normal vector and the
         vector pointing towards the sun's center. [°]
+        Can be calculated with :py:func:`~pvlib.irradiance.aoi`.
     
     aoi_projection
         cos(aoi). When the sun is behind the surface, the value is negative.
@@ -45,6 +48,8 @@ There is a convention on consistent variable names throughout the library:
         zenith angle describes the position of the sun relative to the vertical
         and is defined as the angle between a vector pointed straight up and a
         vector pointed at the sun, from the observer. [°]
+        Use the ``apparent_zenith`` column returned by
+        :py:func:`~pvlib.solarposition.get_solarposition`.
 
     apparent_elevation
         Refraction-corrected solar elevation angle. This is the complement of
@@ -54,13 +59,14 @@ There is a convention on consistent variable names throughout the library:
         Beam/direct horizontal irradiance
     
     clearness_index
-        clearness index [unitless]. Ratio of global horizontal irraidance to
-        the extra terrestrial irriance. The clearness index ranges between
-        0 and 1, with values closer to 1 indicating clear skies.
+        Ratio of global horizontal irradiance to extraterrestrial irradiance
+        on a horizontal plane. [unitless]
+        Can be calculated with :py:func:`~pvlib.irradiance.clearness_index`.
         
     clearsky_index
         clearsky index [unitless]. Ratio of actual global irradiance to modeled
         clearsky global irradiance.
+        Can be calculated with :py:func:`~pvlib.irradiance.clearsky_index`.
     
     dhi
         Diffuse horizontal irradiance
@@ -75,6 +81,8 @@ There is a convention on consistent variable names throughout the library:
 
     dni_extra
         Direct normal irradiance at top of atmosphere (extraterrestrial)
+        [Wm⁻²]. Can be calculated with
+        :py:func:`~pvlib.irradiance.get_extra_radiation`.
 
     effective_irradiance
         Effective irradiance
@@ -183,12 +191,18 @@ There is a convention on consistent variable names throughout the library:
         angle describes the sun’s position along the horizon relative to the
         observer. Azimuth is defined as degrees East of
         North, so North = 0°, East = 90°, South = 180°, West = 270°.
+        Use the ``azimuth`` column returned by
+        :py:func:`~pvlib.solarposition.get_solarposition`.
 
     solar_zenith
-        Zenith angle of the sun in degrees [°]. Zenith is the angle between is
+        Zenith angle of the sun in degrees [°]. Zenith is the angle
         between a vector pointed straight up and a vector pointed at the sun,
         from the observer. Zenith is the complement of solar elevation, i.e.,
         zenith = 90 - elevation.
+        Use the ``zenith`` column returned by
+        :py:func:`~pvlib.solarposition.get_solarposition` for the true
+        (not refraction-corrected) angle, or the ``apparent_zenith`` column
+        for the refraction-corrected angle, as required by the model.
 
     spectra
     spectra_components
